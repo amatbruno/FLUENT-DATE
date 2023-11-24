@@ -18,13 +18,13 @@
 
     <section>
         <div class="row">
-            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
-                <h2>DATE FORMAT</h2>
-                <img id="watch-img" src="..\assets\img\clock.png">
-                <p id="actual-date"></p>
-                <p id="actual-time"></p>
+            <div class="title-date-style col-lg-3 col-md-3 col-sm-3">
+                    <canvas id="clock"></canvas>
+                    <p id="actual-date" class="selections-second"></p>
+                    
             </div>
-            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
+
+            <div class="title-date-style col-lg-5 col-md-3 col-sm-3">
                 <h2>DATE FORMAT</h2>
                 <div id="normal-date" class="selections" onclick="selectDateFormat(this)">DD/MM/YYYY</div>
                 <div id="other-date" class="selections" onclick="selectDateFormat(this)">DAY-MONTH-YEAR</div>
@@ -35,9 +35,14 @@
                 <div id="twelve-format" class="selections" onclick="selectHourFormat(this)">12H</div>
                 <div id="twenty-format" class="selections" onclick="selectHourFormat(this)">24H</div>
             </div>
-            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
+
+            <div class="title-date-style col-lg-3 col-md-3 col-sm-3">
+                <p id="actual-time" class="selections-second"></p>
+            </div>
+
+            <div class="title-date-style col-lg-11 col-md-11 col-sm-11">
                 <h2>ZONE HOURS</h2>
-                <img src="" id="interactive-map">
+                <img src="..\assets\img\mapamundi.svg" id="interactive-map" class="map-style">
             </div>
         </div>
     </section>
@@ -50,5 +55,6 @@
 
 </body>
 <script src="..\js\main.js"></script>
+<script src="..\js\vector.js"></script>
 
 </html>

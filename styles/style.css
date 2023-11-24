@@ -18,22 +18,18 @@ header {
     font-size: 90px;
     font-family: 'Rubik', sans-serif;
 }
-
 .title-date-style {
     border: 1px solid black;
     height: 100%;
     width: 100%;
     text-align: center;
+    margin: auto;
 }
 .title-date-style h2 {
     letter-spacing: 5px;
     margin-bottom: 20px;
     font-family: 'Rubik', sans-serif;
     font-size: 45px;
-}
-.title-date-style img {
-    margin-bottom: 20px;
-    width: 35%;
 }
 .selections {
     background-color: lightgray;
@@ -55,12 +51,20 @@ header {
 .selections.selected2 {
     background-color: rgb(170, 228, 153);
 }
-
+.selections-second {
+    font-size: 25px;
+}
 .manage-date {
     display: flex;
     flex-direction: column;
 }
 
+.row {
+    gap: 70px;
+}
 
 
-
+.map-style {
+    width: 60%;
+    margin-top: 40px;
+}
