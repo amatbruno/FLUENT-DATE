@@ -6,34 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="..\styles\style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
-    <script src="..\js\main.js"></script>
     <title>Date & Time Project</title>
 </head>
 
 <body>
     <header>
-        <div id="header-elements" class="header-style col-lg-12 col-md-12 col-sm-12">
-            <h1>Get your time and date</h1>
+        <div class="header-style col-12">
+            <h1>FLUENT DATE PROJECT</h1>
         </div>
     </header>
 
     <section>
-        <div class="user-section col-lg-12 col-md-12 col-sm-12">
-            <div id="show-date" class="title-date-style col-lg-4 col-md-4 col-sm-4">
-                <!--createElement(img)-->
+        <div class="row">
+            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
                 <h2>DATE FORMAT</h2>
+                <img id="watch-img" src="..\assets\img\clock.png">
                 <p id="actual-date"></p>
+                <p id="actual-time"></p>
             </div>
-            <div id="manage-date" class="title-date-style col-lg-4 col-md-4 col-sm-4">
+            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
                 <h2>DATE FORMAT</h2>
-                <div id="simplified-date" class="selections">DD/MM/YYYY</div>
-                <div id="normal-date" class="selections">DAY-MONTH-YEAR</div>
-                <div id="simplified-date" class="selections">DD/MM/YYYY</div>
-            </div>
-            <div id="map-date" class="title-date-style col-lg-4 col-md-4 col-sm-4">
+                <div id="normal-date" class="selections" onclick="selectDateFormat(this)">DD/MM/YYYY</div>
+                <div id="other-date" class="selections" onclick="selectDateFormat(this)">DAY-MONTH-YEAR</div>
+                <div id="extended-date" class="selections" onclick="selectDateFormat(this)">EXTENDED FORMAT</div>
+                <br>
+                <br>
                 <h2>HOUR FORMAT</h2>
-
-
+                <div id="twelve-format" class="selections" onclick="selectHourFormat(this)">12H</div>
+                <div id="twenty-format" class="selections" onclick="selectHourFormat(this)">24H</div>
+            </div>
+            <div class="title-date-style col-lg-4 col-md-4 col-sm-4">
+                <h2>ZONE HOURS</h2>
+                <img src="" id="interactive-map">
             </div>
         </div>
     </section>
@@ -43,6 +47,8 @@
 
         </div>
     </footer>
+
 </body>
+<script src="..\js\main.js"></script>
 
 </html>
