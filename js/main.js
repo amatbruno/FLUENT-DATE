@@ -1,4 +1,3 @@
-
 //#region CONSTANTS DEFINITION
 const actualDate = document.getElementById("actual-date");
 const actualTime = document.getElementById("actual-time");
@@ -8,6 +7,12 @@ const simplifiedDate = document.getElementById("extended-date");
 const selections = document.querySelectorAll(".selections");
 const twelveSelect = document.getElementById("twelve-format");
 const twentySelect = document.getElementById("twenty-format");
+const getSpain = document.getElementById("Spain");
+const getUkraine = document.getElementById("Ukraine");
+const getSouthAfrica = document.getElementById("South Africa");
+const getColombia = document.getElementById("Colombia");
+const getVietnam = document.getElementById("vietnam");
+const getCanada = document.getElementById("Canada");
 
 //DATE CONSTRUCTORS
 const date = new Date();
@@ -15,39 +20,57 @@ const day = date.getDate();
 const month = date.getMonth() + 1;
 const year = date.getFullYear();
 const yearSimplified = date.getFullYear();
-var hours = date.getHours();
+let hours = date.getHours();
 var minutes = date.getMinutes();
-minutes = minutes < 10 ? '0' + minutes : minutes;
+minutes = minutes < 10 ? "0" + minutes : minutes;
 var seconds = date.getSeconds();
-seconds = seconds < 10 ? '0' + seconds : seconds;
-const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+seconds = seconds < 10 ? "0" + seconds : seconds;
+const monthName = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+];
 const monthLiteral = monthName[date.getMonth()]; //Get month literal
 
-const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
 const dayWeek = weekday[date.getDay()]; //Get week day literal
 //#endregion
-
 
 //#region VARS DEFINITON
 var canvas, ctx;
 //#endregion
 
-
 //#region HIDE INITIALS
-actualDate.innerHTML = day + '-' + month + '-' + year;
-actualTime.innerHTML = hours + ':' + minutes + ':' + seconds;
+actualDate.innerHTML = day + "-" + month + "-" + year;
+actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
 //#endregion
-
 
 //#region FUNCTIONS
 //MULTIPLE SELECTION FOR DIVS
 function selectDateFormat(selectedOpt) {
-    selections.forEach(sel => sel.classList.remove('selected'));
-    selectedOpt.classList.add('selected');
+    selections.forEach((sel) => sel.classList.remove("selected"));
+    selectedOpt.classList.add("selected");
 }
 function selectHourFormat(selectedOpt) {
-    selections.forEach(sel => sel.classList.remove('selected2'));
-    selectedOpt.classList.add('selected2');
+    selections.forEach((sel) => sel.classList.remove("selected2"));
+    selectedOpt.classList.add("selected2");
 }
 //FUNCTION FOR DRAW CLOCK
 function draw() {
@@ -60,12 +83,12 @@ function draw() {
         return Date.now() - midnight.getTime();
     })(),
         hours = time / (60 * 60 * 1000),
-        minutes = hours * 60 % 60,
-        seconds = minutes * 60 % 60,
+        minutes = (hours * 60) % 60,
+        seconds = (minutes * 60) % 60,
         c = { x: canvas.width / 2, y: canvas.height / 2 };
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.lineCap = 'round';
+    ctx.lineCap = "round";
 
     secondHand();
     minuteHand();
@@ -75,7 +98,7 @@ function draw() {
     function face() {
         //Border clock
         ctx.lineWidth = 5;
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = "black";
         ctx.beginPath();
         ctx.arc(c.x, c.y, 140, 0, Math.PI * 2);
         ctx.stroke();
@@ -85,11 +108,9 @@ function draw() {
         for (let i = 0; i < 60; i++) {
             let r = 135,
                 l = 5;
-            ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
+            ctx.strokeStyle = "rgba(0, 0, 0, 0.25)";
             if (i % 5 === 0)
-                r -= l,
-                    l += 2,
-                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+                (r -= l), (l += 2), (ctx.strokeStyle = "rgba(0, 0, 0, 0.5)");
             let v = new Vector(r, Math.PI * 2 * (i / 60) - Math.PI / 2);
             ctx.beginPath();
             ctx.moveTo(v.getX() + c.x, v.getY() + c.y);
@@ -99,20 +120,18 @@ function draw() {
         }
 
         //Numbers
-        ctx.font = '20px Rubik';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        ctx.font = "20px Rubik";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         for (let i = 1; i <= 12; i++) {
             let v = new Vector(113, Math.PI * 2 * (i / 12) - Math.PI / 2);
             ctx.fillText(i, v.getX() + c.x, v.getY() + c.y);
-
         }
-
     }
 
     function secondHand() {
         ctx.lineWidth = 1.5;
-        ctx.strokeStyle = 'red';
+        ctx.strokeStyle = "red";
         ctx.beginPath();
         let a = Math.PI * 2 * (seconds / 60) - Math.PI / 2;
         let v = new Vector(95, a);
@@ -123,7 +142,7 @@ function draw() {
 
     function minuteHand() {
         ctx.lineWidth = 3.5;
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = "black";
         ctx.beginPath();
         let a = Math.PI * 2 * (minutes / 60) - Math.PI / 2;
         let v = new Vector(95, a);
@@ -134,7 +153,7 @@ function draw() {
 
     function hourHand() {
         ctx.lineWidth = 3.5;
-        ctx.strokeStyle = 'black';
+        ctx.strokeStyle = "black";
         ctx.beginPath();
         let a = Math.PI * 2 * (hours / 12) - Math.PI / 2;
         let v = new Vector(60, a);
@@ -142,112 +161,92 @@ function draw() {
         ctx.lineTo(v.getX() + c.x, v.getY() + c.y);
         ctx.stroke();
     }
-
 }
 function init() {
     canvas = document.getElementById("clock");
     canvas.width = canvas.height = 300;
-    ctx = canvas.getContext('2d');
+    ctx = canvas.getContext("2d");
 
     setInterval(draw, 10);
 }
 init();
 function getPaths() {
-    document.querySelectorAll(".allPaths").forEach(e => {
-        e.setAttribute('class', `allPaths ${e.id}`);
+    document.querySelectorAll(".allPaths").forEach((e) => {
+        e.setAttribute("class", `allPaths ${e.id}`);
         e.addEventListener("mouseover", function () {
             window.onmousemove = function (j) {
-                x = j.clientX
-                y = j.clientY
-                document.getElementById('name').style.top = y - 10 + 'px'
-                document.getElementById('name').style.left = x + 1 + 'px'
-            }
-            const classes = e.className.baseVal.replace(/ /g, '.')
-            document.querySelectorAll(`.${classes}`).forEach(country => {
-                country.style.fill = "pink"
-            })
-            document.getElementById("name").style.opacity = 1
+                x = j.clientX;
+                y = j.clientY;
+                document.getElementById("name").style.top = y - 10 + "px";
+                document.getElementById("name").style.left = x + 1 + "px";
+            };
+            const classes = e.className.baseVal.replace(/ /g, ".");
+            document.querySelectorAll(`.${classes}`).forEach((country) => {
+                country.style.fill = "#0000ff5d";
+            });
+            document.getElementById("name").style.opacity = 1;
 
-            document.getElementById("namep").innerText = e.id
-        })
+            document.getElementById("namep").innerText = e.id;
+        });
         e.addEventListener("mouseleave", function () {
-            const classes = e.className.baseVal.replace(/ /g, '.')
-            document.querySelectorAll(`.${classes}`).forEach(country => {
-                country.style.fill = "#dd9000"
-            })
-            document.getElementById("name").style.opacity = 0
-        })
-
-        e.addEventListener("click", function () {
-            getUser(e.id)
-        })
-
-    })
+            const classes = e.className.baseVal.replace(/ /g, ".");
+            document.querySelectorAll(`.${classes}`).forEach((country) => {
+                country.style.fill = "#dd9000";
+            });
+            document.getElementById("name").style.opacity = 0;
+        });
+    });
 }
 getPaths();
-function formatTime(hours, minutes, seconds, is12HourFormat) {
-    if (is12HourFormat) {
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        if (hours === 12) {
-            hours = 12;
-        } else {
-            hours = hours % 12;
-        }
-        return hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-    } else {
-        return padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
-    }
-}
+// function formatTime(hours, minutes, seconds, is12HourFormat) {
+//     if (is12HourFormat) {
+//         var ampm = hours >= 12 ? "PM" : "AM";
+//         if (hours === 12) {
+//             hours = 12;
+//         } else {
+//             hours = hours % 12;
+//         }
+//         return hours + ":" + minutes + ":" + seconds + " " + ampm;
+//     } else {
+//         return padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds);
+//     }
+// }
 function padZero(value) {
-    return value < 10 ? '0' + value : value;
+    return value < 10 ? "0" + value : value;
 }
 //#endregion
 
-
 //#region LISTENERS
-window.addEventListener("load", function () {
-    normalDate.addEventListener("click", function () {
-        actualDate.innerHTML = day + '/' + month + '/' + year;
-    });
-    otherDate.addEventListener("click", function () {
-        actualDate.innerHTML = day + '-' + monthLiteral + '-' + year;
-    });
-    simplifiedDate.addEventListener("click", function () {
-        actualDate.innerHTML = dayWeek + ', ' + day + ' of ' + monthLiteral + ' of ' + year;
-    });
-    twelveSelect.addEventListener("click", function () {
-        var ampm = hours >= 12 ? 'PM' : 'AM';
+normalDate.addEventListener("click", function () {
+    actualDate.innerHTML = day + "/" + month + "/" + year;
+});
+otherDate.addEventListener("click", function () {
+    actualDate.innerHTML = day + "-" + monthLiteral + "-" + year;
+});
+simplifiedDate.addEventListener("click", function () {
+    actualDate.innerHTML =
+        dayWeek + ", " + day + " of " + monthLiteral + " of " + year;
+});
+let isPM = false;
+twelveSelect.addEventListener("click", function () {
+    isPM = !isPM;
 
-        if (hours === 12) {
-            hours = 12;
-        } else {
-            hours = hours % 12;
-        }
+    if (hours === 12) {
+        hours = isPM ? 12 : 0;
+    } else {
+        hours = isPM ? hours + 12 : hours;
+    }
 
-        actualTime.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-    });
-    twentySelect.addEventListener("click", function () {
-        actualTime.innerHTML = formatTime(hours, minutes, seconds, false);
-    });
-
-    // Update the clock every second
-    setInterval(function () {
-        var currentDate = new Date();
-        hours = currentDate.getHours();
-        minutes = currentDate.getMinutes();
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = currentDate.getSeconds();
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-
-        if (hours === 12) {
-            hours = 12;
-        } else {
-            hours = hours % 12;
-        }
-
-        actualTime.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-    }, 1000);
+    actualTime.innerHTML = padZero(hours) + ":" + minutes + ":" + seconds + " " + (isPM ? "PM" : "AM");
+});
+twentySelect.addEventListener("click", function () {
+    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
+});
+getSpain.addEventListener("click", function () {
+    updateClock();
+});
+getUkraine.addEventListener("click", function () {
+    hours = (hours + 3) % 24;
+    updateClock();
 });
 //#endregion

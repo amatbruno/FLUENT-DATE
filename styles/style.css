@@ -103,10 +103,10 @@ header {
     width: fit-content;
     opacity: 0;
     border-radius: 5px;
-    border: 1px solid #f58080;
+    border: 1px solid #0000ff5d;
     padding: 3px;
     font-size: 1.5rem;
-    margin-top: -250px;
+    margin-top: -100px;
     margin-left: 0px;
 }
 
