@@ -18,7 +18,8 @@ const yearSimplified = date.getFullYear();
 var hours = date.getHours();
 var minutes = date.getMinutes();
 minutes = minutes < 10 ? '0' + minutes : minutes;
-const seconds = date.getSeconds();
+var seconds = date.getSeconds();
+seconds = seconds < 10 ? '0' + seconds : seconds;
 const monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const monthLiteral = monthName[date.getMonth()]; //Get month literal
 
@@ -63,7 +64,7 @@ function draw() {
         seconds = minutes * 60 % 60,
         c = { x: canvas.width / 2, y: canvas.height / 2 };
 
-    ctx.clearRect(0, 0, canvas.width , canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'round';
 
     secondHand();
@@ -78,17 +79,17 @@ function draw() {
         ctx.beginPath();
         ctx.arc(c.x, c.y, 140, 0, Math.PI * 2);
         ctx.stroke();
-    
+
         //Dashes Clock
         ctx.lineWidth = 4;
         for (let i = 0; i < 60; i++) {
             let r = 135,
-            l = 5;
+                l = 5;
             ctx.strokeStyle = 'rgba(0, 0, 0, 0.25)';
-            if (i % 5 === 0) 
+            if (i % 5 === 0)
                 r -= l,
-                l += 2,
-                ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+                    l += 2,
+                    ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
             let v = new Vector(r, Math.PI * 2 * (i / 60) - Math.PI / 2);
             ctx.beginPath();
             ctx.moveTo(v.getX() + c.x, v.getY() + c.y);
@@ -104,9 +105,9 @@ function draw() {
         for (let i = 1; i <= 12; i++) {
             let v = new Vector(113, Math.PI * 2 * (i / 12) - Math.PI / 2);
             ctx.fillText(i, v.getX() + c.x, v.getY() + c.y);
-            
+
         }
-    
+
     }
 
     function secondHand() {
@@ -151,32 +152,102 @@ function init() {
     setInterval(draw, 10);
 }
 init();
+function getPaths() {
+    document.querySelectorAll(".allPaths").forEach(e => {
+        e.setAttribute('class', `allPaths ${e.id}`);
+        e.addEventListener("mouseover", function () {
+            window.onmousemove = function (j) {
+                x = j.clientX
+                y = j.clientY
+                document.getElementById('name').style.top = y - 10 + 'px'
+                document.getElementById('name').style.left = x + 1 + 'px'
+            }
+            const classes = e.className.baseVal.replace(/ /g, '.')
+            document.querySelectorAll(`.${classes}`).forEach(country => {
+                country.style.fill = "pink"
+            })
+            document.getElementById("name").style.opacity = 1
+
+            document.getElementById("namep").innerText = e.id
+        })
+        e.addEventListener("mouseleave", function () {
+            const classes = e.className.baseVal.replace(/ /g, '.')
+            document.querySelectorAll(`.${classes}`).forEach(country => {
+                country.style.fill = "#dd9000"
+            })
+            document.getElementById("name").style.opacity = 0
+        })
+
+        e.addEventListener("click", function () {
+            getUser(e.id)
+        })
+
+    })
+}
+getPaths();
+function formatTime(hours, minutes, seconds, is12HourFormat) {
+    if (is12HourFormat) {
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        if (hours === 12) {
+            hours = 12;
+        } else {
+            hours = hours % 12;
+        }
+        return hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    } else {
+        return padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+    }
+}
+function padZero(value) {
+    return value < 10 ? '0' + value : value;
+}
 //#endregion
 
 
 //#region LISTENERS
-normalDate.addEventListener("click", function () {
-    actualDate.innerHTML = day + '/' + month + '/' + year;
-});
-otherDate.addEventListener("click", function () {
-    actualDate.innerHTML = day + '-' + monthLiteral + '-' + year;
-});
-simplifiedDate.addEventListener("click", function () {
-    actualDate.innerHTML = dayWeek + ', ' + day + ' of ' + monthLiteral + ' of ' + year;
-});
-twelveSelect.addEventListener("click", function () {
-    var ampm = hours >= 12 ? 'PM' : 'AM';
+window.addEventListener("load", function () {
+    normalDate.addEventListener("click", function () {
+        actualDate.innerHTML = day + '/' + month + '/' + year;
+    });
+    otherDate.addEventListener("click", function () {
+        actualDate.innerHTML = day + '-' + monthLiteral + '-' + year;
+    });
+    simplifiedDate.addEventListener("click", function () {
+        actualDate.innerHTML = dayWeek + ', ' + day + ' of ' + monthLiteral + ' of ' + year;
+    });
+    twelveSelect.addEventListener("click", function () {
+        var ampm = hours >= 12 ? 'PM' : 'AM';
 
-    if (hours === 12) {
-        hours = 12;
-    } else {
-        hours = hours % 12;
-    }
+        if (hours === 12) {
+            hours = 12;
+        } else {
+            hours = hours % 12;
+        }
 
-    actualTime.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-});
-twentySelect.addEventListener("click", function () {
-    actualTime.innerHTML = hours + ':' + minutes + ':' + seconds;
-});
+        actualTime.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    });
+    twentySelect.addEventListener("click", function () {
+        actualTime.innerHTML = formatTime(hours, minutes, seconds, false);
+    });
 
+    // Update the clock every second
+    setInterval(function () {
+        var currentDate = new Date();
+        hours = currentDate.getHours();
+        minutes = currentDate.getMinutes();
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = currentDate.getSeconds();
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+
+        if (hours === 12) {
+            hours = 12;
+        } else {
+            hours = hours % 12;
+        }
+
+        actualTime.innerHTML = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+    }, 1000);
+});
 //#endregion

@@ -1,36 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
 
-/* body {
-    font-family: 'Rubik', sans-serif;
-} */
 
 header {
-    background-color: lightgray;
+    background-color: #0000ff5d;
+    color: aliceblue;
     width: 100%;
     height: 100%;
-    padding: 70px;
-    margin-bottom: 25px;
+    padding: 100px;
+    margin-bottom: 75px;
 }
+
 .header-style {
     text-align: center;
 }
+
 .header-style h1 {
     font-size: 90px;
     font-family: 'Rubik', sans-serif;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
 }
+.header-style p {
+    font-size: 30px;
+    text-align: center;
+    width: 65%;
+    margin: auto;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
 .title-date-style {
-    border: 1px solid black;
     height: 100%;
     width: 100%;
     text-align: center;
     margin: auto;
 }
+
 .title-date-style h2 {
     letter-spacing: 5px;
     margin-bottom: 20px;
     font-family: 'Rubik', sans-serif;
     font-size: 45px;
 }
+
 .selections {
     background-color: lightgray;
     width: 50%;
@@ -42,29 +54,74 @@ header {
     font-weight: 400;
     font-size: 17px;
 }
+
 .selections:hover {
     background-color: rgba(211, 211, 211, 0.795);
 }
+
 .selections.selected {
     background-color: rgb(154, 208, 226);
 }
+
 .selections.selected2 {
     background-color: rgb(170, 228, 153);
 }
+
 .selections-second {
-    font-size: 25px;
+    font-size: 55px;
+    width: 70%;
+    margin: auto;
 }
+.selections-third {
+    font-size: 100px;
+}
+
 .manage-date {
     display: flex;
     flex-direction: column;
 }
 
-.row {
-    gap: 70px;
+.map-style {
+    width: 90%;
+    height: 100%;
+    margin-top: 50px;
+    background-color: #add8e685;
+    margin: auto;
+    border-radius: 35px;
+    border: 1px solid rgba(0, 0, 0, 0.404);
 }
 
+.map-style path {
+    fill: #dd9000;
+    stroke: #5e0000;
+    stroke-width: 0.5px;
+}
 
-.map-style {
-    width: 60%;
-    margin-top: 40px;
+#name {
+    position: absolute;
+    background-color: aliceblue;
+    width: fit-content;
+    opacity: 0;
+    border-radius: 5px;
+    border: 1px solid #f58080;
+    padding: 3px;
+    font-size: 1.5rem;
+    margin-top: -250px;
+    margin-left: 0px;
+}
+
+svg {
+    border-radius: 35px;
+}
+
+svg path {
+    cursor: pointer;
+}
+
+svg path:hover {
+    fill: rgb(185, 15, 43);
+}
+.sep-div {
+    margin-top: 95px;
+    margin-bottom: 50px;
 }
