@@ -20,7 +20,8 @@ const day = date.getDate();
 const month = date.getMonth() + 1;
 const year = date.getFullYear();
 const yearSimplified = date.getFullYear();
-let hours = date.getHours();
+var hours = date.getHours();
+hours = hours < 10 ? '0'+hours : hours;
 var minutes = date.getMinutes();
 minutes = minutes < 10 ? "0" + minutes : minutes;
 var seconds = date.getSeconds();
@@ -97,8 +98,8 @@ function draw() {
 
     function face() {
         //Border clock
-        ctx.lineWidth = 5;
-        ctx.strokeStyle = "black";
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = "white";
         ctx.beginPath();
         ctx.arc(c.x, c.y, 140, 0, Math.PI * 2);
         ctx.stroke();
@@ -106,11 +107,11 @@ function draw() {
         //Dashes Clock
         ctx.lineWidth = 4;
         for (let i = 0; i < 60; i++) {
-            let r = 135,
-                l = 5;
-            ctx.strokeStyle = "rgba(0, 0, 0, 0.25)";
+            let r = 133,
+                l = 6;
+            ctx.strokeStyle = "white";
             if (i % 5 === 0)
-                (r -= l), (l += 2), (ctx.strokeStyle = "rgba(0, 0, 0, 0.5)");
+                (r -= l), (l += 2), (ctx.strokeStyle = "white");
             let v = new Vector(r, Math.PI * 2 * (i / 60) - Math.PI / 2);
             ctx.beginPath();
             ctx.moveTo(v.getX() + c.x, v.getY() + c.y);
@@ -124,8 +125,9 @@ function draw() {
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         for (let i = 1; i <= 12; i++) {
-            let v = new Vector(113, Math.PI * 2 * (i / 12) - Math.PI / 2);
+            let v = new Vector(111, Math.PI * 2 * (i / 12) - Math.PI / 2);
             ctx.fillText(i, v.getX() + c.x, v.getY() + c.y);
+            ctx.strokeStyle = "white";
         }
     }
 
@@ -142,7 +144,7 @@ function draw() {
 
     function minuteHand() {
         ctx.lineWidth = 3.5;
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "white";
         ctx.beginPath();
         let a = Math.PI * 2 * (minutes / 60) - Math.PI / 2;
         let v = new Vector(95, a);
@@ -153,7 +155,7 @@ function draw() {
 
     function hourHand() {
         ctx.lineWidth = 3.5;
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = "white";
         ctx.beginPath();
         let a = Math.PI * 2 * (hours / 12) - Math.PI / 2;
         let v = new Vector(60, a);
@@ -198,22 +200,6 @@ function getPaths() {
     });
 }
 getPaths();
-// function formatTime(hours, minutes, seconds, is12HourFormat) {
-//     if (is12HourFormat) {
-//         var ampm = hours >= 12 ? "PM" : "AM";
-//         if (hours === 12) {
-//             hours = 12;
-//         } else {
-//             hours = hours % 12;
-//         }
-//         return hours + ":" + minutes + ":" + seconds + " " + ampm;
-//     } else {
-//         return padZero(hours) + ":" + padZero(minutes) + ":" + padZero(seconds);
-//     }
-// }
-function padZero(value) {
-    return value < 10 ? "0" + value : value;
-}
 //#endregion
 
 //#region LISTENERS
@@ -221,25 +207,26 @@ normalDate.addEventListener("click", function () {
     actualDate.innerHTML = day + "/" + month + "/" + year;
 });
 otherDate.addEventListener("click", function () {
-    actualDate.innerHTML = day + "-" + monthLiteral + "-" + year;
+    let simpDate = new Date().toLocaleDateString('en-us', {day:"numeric", year:"numeric", month:"short"})
+
+
+    actualDate.innerHTML = simpDate;
 });
 simplifiedDate.addEventListener("click", function () {
     actualDate.innerHTML =
         dayWeek + ", " + day + " of " + monthLiteral + " of " + year;
 });
-let isPM = false;
 twelveSelect.addEventListener("click", function () {
-    isPM = !isPM;
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    hours = hours < 10 ? '0'+hours : hours;
 
-    if (hours === 12) {
-        hours = isPM ? 12 : 0;
-    } else {
-        hours = isPM ? hours + 12 : hours;
-    }
-
-    actualTime.innerHTML = padZero(hours) + ":" + minutes + ":" + seconds + " " + (isPM ? "PM" : "AM");
+    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + ampm;
 });
 twentySelect.addEventListener("click", function () {
+
+
     actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
 });
 getSpain.addEventListener("click", function () {

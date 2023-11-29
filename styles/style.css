@@ -10,6 +10,15 @@ header {
     margin-bottom: 75px;
 }
 
+footer {
+    background-color: #0000ff5d;
+    color: aliceblue;
+    width: 100%;
+    height: 10%;
+    padding: 20px;
+    margin-top: 85px;
+}
+
 .header-style {
     text-align: center;
 }
@@ -20,6 +29,7 @@ header {
     margin-bottom: 10px;
     letter-spacing: 3px;
 }
+
 .header-style p {
     font-size: 30px;
     text-align: center;
@@ -29,11 +39,38 @@ header {
     letter-spacing: 1px;
 }
 
+.intro {
+    font-size: 22px;
+    text-align: center;
+    margin: auto auto 30px;
+    width: 65%;
+}
+
 .title-date-style {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 650px;
     width: 100%;
     text-align: center;
     margin: auto;
+    background-color: #2024ffb4;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.title-map-style {
+    width: 100%;
+    margin: auto;
+}
+
+.title-map-style h2 {
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 45px;
+    text-align: center;
 }
 
 .title-date-style h2 {
@@ -41,10 +78,10 @@ header {
     margin-bottom: 20px;
     font-family: 'Rubik', sans-serif;
     font-size: 45px;
+    color: aliceblue;
 }
 
 .selections {
-    background-color: lightgray;
     width: 50%;
     text-align: center;
     justify-content: center;
@@ -53,10 +90,32 @@ header {
     cursor: pointer;
     font-weight: 400;
     font-size: 17px;
+    border: 1px solid;
+    overflow: hidden;
+    position: relative;
 }
 
-.selections:hover {
-    background-color: rgba(211, 211, 211, 0.795);
+.selections span {
+    z-index: 20;
+}
+
+.selections::after {
+    background: #fff;
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+}
+
+.selections:hover::after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .selections.selected {
@@ -68,12 +127,17 @@ header {
 }
 
 .selections-second {
-    font-size: 55px;
-    width: 70%;
+    font-size: 45px;
+    width: 90%;
     margin: auto;
+    padding: 30px;
+    color: aliceblue;
 }
+
 .selections-third {
-    font-size: 100px;
+    font-size: 80px;
+    width: 100%;
+    color: aliceblue;
 }
 
 .manage-date {
@@ -121,7 +185,23 @@ svg path {
 svg path:hover {
     fill: rgb(185, 15, 43);
 }
+
 .sep-div {
     margin-top: 95px;
     margin-bottom: 50px;
+}
+
+.footer-style {
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    margin: auto;
+}
+
+.footer-style p {
+    text-align: center;
+    width: 35%;
+    margin: auto;
+    font-weight: 500;
+    letter-spacing: 1px;
 }

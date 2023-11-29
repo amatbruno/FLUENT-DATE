@@ -19,30 +19,34 @@
     </header>
 
     <section>
+        <p class="intro">In this section, you can modify the format of the time or/and date
+            by clicking in the corresponding buttons.</p>
         <div class="row">
-            <div class="title-date-style col-lg-4 col-md-4 col-sm-12">
+            <div class="title-date-style col-lg-3 col-md-4 col-sm-12">
                 <canvas id="clock"></canvas>
                 <p id="actual-date" class="selections-second"></p>
             </div>
 
             <div class="title-date-style first-div col-lg-4 col-md-4 col-sm-12">
                 <h2>DATE FORMAT</h2>
-                <div id="normal-date" class="selections" onclick="selectDateFormat(this)">DD/MM/YYYY</div>
-                <div id="other-date" class="selections" onclick="selectDateFormat(this)">DAY-MONTH-YEAR</div>
-                <div id="extended-date" class="selections" onclick="selectDateFormat(this)">EXTENDED FORMAT</div>
+                <button id="normal-date" class="selections" onclick="selectDateFormat(this)">DD/MM/YYYY</button>
+                <button id="other-date" class="selections" onclick="selectDateFormat(this)">DAY-MONTH-YEAR</button>
+                <button id="extended-date" class="selections" onclick="selectDateFormat(this)">EXTENDED FORMAT</button>
                 <br>
                 <br>
                 <h2>HOUR FORMAT</h2>
-                <div id="twelve-format" class="selections" onclick="selectHourFormat(this)">12H</div>
-                <div id="twenty-format" class="selections" onclick="selectHourFormat(this)">24H</div>
+                <button id="twelve-format" class="selections" onclick="selectHourFormat(this)">12H</button>
+                <button id="twenty-format" class="selections" onclick="selectHourFormat(this)">24H</button>
             </div>
 
-            <div class="title-date-style col-lg-4 col-md-4 col-sm-12">
+            <div class="title-date-style col-lg-3 col-md-4 col-sm-12">
                 <p id="actual-time" class="selections-third"></p>
             </div>
 
-            <div class="title-date-style sep-div col-lg-12 col-md-10 col-sm-10">
+            <div class="title-map-style sep-div col-lg-12 col-md-10 col-sm-10">
                 <h2>ZONE HOUR</h2>
+                <p class="intro">Discover the zone hours in diferent countries or estates compared to yours.
+                    It's crazy how in the other part of the world the time and date are totally opposite of here!.</p>
                 <div class="map-style">
                     <?xml version="1.0"?>
 
@@ -1617,10 +1621,12 @@
                 </div>
             </div>
     </section>
-
+    <br>
+    <br>
     <footer>
-        <div id="footer-elements" class="footer-style">
-
+        <div id="footer-elements" class="footer-style col-6">
+            <p>Made By Bruno Amat</p>
+            <p>29-11-2023</p>
         </div>
     </footer>
 
