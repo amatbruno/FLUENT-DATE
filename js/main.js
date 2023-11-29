@@ -11,7 +11,9 @@ const getSpain = document.getElementById("Spain");
 const getUkraine = document.getElementById("Ukraine");
 const getSouthAfrica = document.getElementById("South Africa");
 const getColombia = document.getElementById("Colombia");
-const getVietnam = document.getElementById("vietnam");
+const getPakistan = document.getElementById("Pakistan");
+const getArgentina = document.getElementById("Argentina");
+const getJapan = document.getElementById("Japan");
 const getCanada = document.getElementById("Canada");
 
 //DATE CONSTRUCTORS
@@ -21,7 +23,7 @@ const month = date.getMonth() + 1;
 const year = date.getFullYear();
 const yearSimplified = date.getFullYear();
 var hours = date.getHours();
-hours = hours < 10 ? '0'+hours : hours;
+hours = hours < 10 ? '0' + hours : hours;
 var minutes = date.getMinutes();
 minutes = minutes < 10 ? "0" + minutes : minutes;
 var seconds = date.getSeconds();
@@ -121,13 +123,15 @@ function draw() {
         }
 
         //Numbers
-        ctx.font = "20px Rubik";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         for (let i = 1; i <= 12; i++) {
             let v = new Vector(111, Math.PI * 2 * (i / 12) - Math.PI / 2);
+            // Set the fillStyle for the text
+            ctx.font = "20px Rubik";
+            ctx.fillStyle = "white";
+            ctx.lineWidth = 1;
             ctx.fillText(i, v.getX() + c.x, v.getY() + c.y);
-            ctx.strokeStyle = "white";
         }
     }
 
@@ -197,6 +201,13 @@ function getPaths() {
             });
             document.getElementById("name").style.opacity = 0;
         });
+
+        // e.addEventListener("click", function () {
+        //     const classes = e.className.baseVal.replace(/ /g, ".");
+        //     document.querySelectorAll(`.${classes}`).forEach((country) => {
+        //         country.style.fill = "#0000ff5d";
+        //     });
+        // })
     });
 }
 getPaths();
@@ -207,7 +218,7 @@ normalDate.addEventListener("click", function () {
     actualDate.innerHTML = day + "/" + month + "/" + year;
 });
 otherDate.addEventListener("click", function () {
-    let simpDate = new Date().toLocaleDateString('en-us', {day:"numeric", year:"numeric", month:"short"})
+    let simpDate = new Date().toLocaleDateString('en-us', { day: "numeric", year: "numeric", month: "short" })
 
 
     actualDate.innerHTML = simpDate;
@@ -220,7 +231,7 @@ twelveSelect.addEventListener("click", function () {
     var ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12;
-    hours = hours < 10 ? '0'+hours : hours;
+    hours = hours < 10 ? '0' + hours : hours;
 
     actualTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + ampm;
 });
@@ -230,10 +241,62 @@ twentySelect.addEventListener("click", function () {
     actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
 });
 getSpain.addEventListener("click", function () {
-    updateClock();
+    actualDate.innerHTML = day + "-" + month + "-" + year;
+    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
 });
 getUkraine.addEventListener("click", function () {
-    hours = (hours + 3) % 24;
-    updateClock();
+    //alert("ucrania")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let ukrDate = new Date();
+    let formattedDate = ukrDate.toLocaleDateString('en-UA', options)
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours+1) + ":" + minutes + ":" + seconds;
 });
+getColombia.addEventListener("click", function () {
+    //alert("colombia")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let colDate = new Date();
+    let formattedDate = colDate.toLocaleDateString('en-CO', options);
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours-6) + ":" + minutes + ":" + seconds;
+});
+getPakistan.addEventListener("click", function () {
+    // alert("pakistan")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let pakDate = new Date();
+    let formattedDate = pakDate.toLocaleDateString('en-PK', options);
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours+5) + ":" + minutes + ":" + seconds;
+});
+getSouthAfrica.addEventListener("click", function () {
+    // alert("southafrica")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let souADate = new Date();
+    let formattedDate = souADate.toLocaleDateString('en-ZA', options);
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours+2) + ":" + minutes + ":" + seconds;
+});
+getArgentina.addEventListener("click", function () {
+    // alert("argentina")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let argDate = new Date();
+    let formattedDate = argDate.toLocaleDateString('en-AR', options);
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours-4) + ":" + minutes + ":" + seconds;
+});
+getSouthAfrica.addEventListener("click", function () {
+    // alert("japan")
+    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
+    let japanDate = new Date();
+    let formattedDate = japanDate.toLocaleDateString('en-JP', options);
+
+    actualDate.innerHTML = formattedDate;
+    actualTime.innerHTML = (hours+2) + ":" + minutes + ":" + seconds;
+});
+
 //#endregion

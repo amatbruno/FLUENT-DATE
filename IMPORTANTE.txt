@@ -1,0 +1,7 @@
+PARA COMPROBAR QUE LA SELECCIÓN DE ZONAS HORARIAS, SE TENDRÁ QUE SELECCIONAR UNO DE LOS SIGUIENTES PAÍSES:
+    - Ucrania
+    - Pakistan
+    - Colombia
+    - España
+    - Sudafrica
+    - 
