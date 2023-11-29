@@ -23,12 +23,12 @@
         <p class="intro">In this section, you can modify the format of the time or/and date
             by clicking in the corresponding buttons.</p>
         <div class="row">
-            <div class="title-date-style col-lg-3 col-md-4 col-sm-12">
+            <div class="title-date-style col-lg-3 col-md-6 col-sm-12">
                 <canvas id="clock"></canvas>
                 <p id="actual-date" class="selections-second"></p>
             </div>
 
-            <div class="title-date-style first-div col-lg-4 col-md-4 col-sm-12">
+            <div class="title-date-style first-div col-lg-4 col-md-6 col-sm-12">
                 <h2>DATE FORMAT</h2>
                 <button id="normal-date" class="selections" onclick="selectDateFormat(this)">DD/MM/YYYY</button>
                 <button id="other-date" class="selections" onclick="selectDateFormat(this)">DAY-MONTH-YEAR</button>
@@ -40,7 +40,7 @@
                 <button id="twenty-format" class="selections" onclick="selectHourFormat(this)">24H</button>
             </div>
 
-            <div class="title-date-style col-lg-3 col-md-4 col-sm-12">
+            <div class="title-date-style col-lg-3 col-md-12 col-sm-12">
                 <p id="actual-time" class="selections-third"></p>
             </div>
 
@@ -55,6 +55,7 @@
                         <p id="namep"></p>
                     </div>
 
+                    <!--SVG MAP-->
                     <svg id="allSvg" baseprofile="tiny" fill="#ececec" stroke="black" stroke-linecap="round"
                         stroke-linejoin="round" version="1.2" viewbox="0 0 2000 857" xmlns="http://www.w3.org/2000/svg">
                         <path class="allPaths"
@@ -1618,14 +1619,14 @@
                         </circle>
                     </svg>
 
-                    </map>
+                    
                 </div>
             </div>
     </section>
     <br>
     <br>
     <footer>
-        <div id="footer-elements" class="footer-style col-6">
+        <div id="footer-elements" class="footer-style col-12">
             <p>Made By Bruno Amat</p>
             <p>29-11-2023</p>
         </div>
