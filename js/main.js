@@ -14,7 +14,8 @@ const getColombia = document.getElementById("Colombia");
 const getPakistan = document.getElementById("Pakistan");
 const getArgentina = document.getElementById("Argentina");
 const getJapan = document.getElementById("Japan");
-const getCanada = document.getElementById("Canada");
+const getAustralia = document.getElementById("Australia");
+const getGreenland = document.getElementById("Greenland");
 
 //DATE CONSTRUCTORS
 const date = new Date();
@@ -201,16 +202,17 @@ function getPaths() {
             });
             document.getElementById("name").style.opacity = 0;
         });
-
-        // e.addEventListener("click", function () {
-        //     const classes = e.className.baseVal.replace(/ /g, ".");
-        //     document.querySelectorAll(`.${classes}`).forEach((country) => {
-        //         country.style.fill = "#0000ff5d";
-        //     });
-        // })
     });
 }
 getPaths();
+function updateTime(tZone) {
+    let options = { hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: tZone };
+    let pakDate = new Date();
+    let formattedTime = new Intl.DateTimeFormat('en-PK', options).format(pakDate).toUpperCase();
+
+    actualTime.innerHTML = `${formattedTime}`;
+}
+
 //#endregion
 
 //#region LISTENERS
@@ -236,67 +238,39 @@ twelveSelect.addEventListener("click", function () {
     actualTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + ampm;
 });
 twentySelect.addEventListener("click", function () {
+    let newDate = new Date();
+    let timeRes = newDate.getHours();
 
-
-    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
+    actualTime.innerHTML = timeRes + ":" + minutes + ":" + seconds;
 });
 getSpain.addEventListener("click", function () {
-    actualDate.innerHTML = day + "-" + month + "-" + year;
-    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
+    updateTime('Europe/Madrid');
 });
 getUkraine.addEventListener("click", function () {
     //alert("ucrania")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let ukrDate = new Date();
-    let formattedDate = ukrDate.toLocaleDateString('en-UA', options)
-
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours+1) + ":" + minutes + ":" + seconds;
+    updateTime('Europe/Kiev');
 });
 getColombia.addEventListener("click", function () {
     //alert("colombia")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let colDate = new Date();
-    let formattedDate = colDate.toLocaleDateString('en-CO', options);
-
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours-6) + ":" + minutes + ":" + seconds;
+    updateTime('Europe/Bogota');
 });
 getPakistan.addEventListener("click", function () {
-    // alert("pakistan")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let pakDate = new Date();
-    let formattedDate = pakDate.toLocaleDateString('en-PK', options);
-
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours+5) + ":" + minutes + ":" + seconds;
+    updateTime('Asia/Karachi');
 });
 getSouthAfrica.addEventListener("click", function () {
     // alert("southafrica")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let souADate = new Date();
-    let formattedDate = souADate.toLocaleDateString('en-ZA', options);
-
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours+2) + ":" + minutes + ":" + seconds;
+    updateTime('Africa/Johannesburg');
+});
+getJapan.addEventListener("click", function () {
+    // alert("japan")
+    updateTime('Asia/Tokyo');
 });
 getArgentina.addEventListener("click", function () {
-    // alert("argentina")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let argDate = new Date();
-    let formattedDate = argDate.toLocaleDateString('en-AR', options);
-
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours-4) + ":" + minutes + ":" + seconds;
+    updateTime('America/Argentina/Buenos_Aires');
 });
-getSouthAfrica.addEventListener("click", function () {
-    // alert("japan")
-    let options = {year: "numeric", month: "short", day:"numeric", weekday: "long" };
-    let japanDate = new Date();
-    let formattedDate = japanDate.toLocaleDateString('en-JP', options);
 
-    actualDate.innerHTML = formattedDate;
-    actualTime.innerHTML = (hours+2) + ":" + minutes + ":" + seconds;
+getNewZealand.addEventListener("click", function () {
+    updateTime('Pacific/Auckland');
 });
 
 //#endregion
