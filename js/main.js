@@ -1,3 +1,4 @@
+
 //#region CONSTANTS DEFINITION
 const actualDate = document.getElementById("actual-date");
 const actualTime = document.getElementById("actual-time");
@@ -14,8 +15,9 @@ const getColombia = document.getElementById("Colombia");
 const getPakistan = document.getElementById("Pakistan");
 const getArgentina = document.getElementById("Argentina");
 const getJapan = document.getElementById("Japan");
-const getAustralia = document.getElementById("Australia");
+const getNewZealand = document.getElementById("New Zealand");
 const getGreenland = document.getElementById("Greenland");
+const getGhana = document.getElementById("Ghana");
 
 //DATE CONSTRUCTORS
 const date = new Date();
@@ -206,13 +208,15 @@ function getPaths() {
 }
 getPaths();
 function updateTime(tZone) {
-    let options = { hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: tZone };
-    let pakDate = new Date();
-    let formattedTime = new Intl.DateTimeFormat('en-PK', options).format(pakDate).toUpperCase();
+    let time = { hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: tZone };
+    let date = { year: 'numeric', month: "numeric", day: "numeric", timeZone: tZone };
+    let generalDate = new Date();
+    let formattedTime = new Intl.DateTimeFormat('en-ES', time).format(generalDate).toUpperCase();
+    let formattedDate = new Intl.DateTimeFormat('en-ES', date).format(generalDate).toUpperCase();
 
     actualTime.innerHTML = `${formattedTime}`;
+    actualDate.innerHTML = `${formattedDate}`;
 }
-
 //#endregion
 
 //#region LISTENERS
@@ -268,9 +272,14 @@ getJapan.addEventListener("click", function () {
 getArgentina.addEventListener("click", function () {
     updateTime('America/Argentina/Buenos_Aires');
 });
-
 getNewZealand.addEventListener("click", function () {
     updateTime('Pacific/Auckland');
+});
+getGreenland.addEventListener("click", function () {
+    updateTime('America/Godthab');
+});
+getGhana.addEventListener("click", function () {
+    updateTime('Africa/Accra');
 });
 
 //#endregion
