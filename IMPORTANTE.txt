@@ -4,4 +4,8 @@ PARA COMPROBAR LA SELECCIÓN DE ZONAS HORARIAS, SE TENDRÁ QUE SELECCIONAR UNO D
     - Colombia
     - España
     - Sudafrica
-    - 
+    - Argentina
+    - Nueva Zelanda
+    - Ghana
+    - Japón
+    - Groenlandia

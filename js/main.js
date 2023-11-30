@@ -214,7 +214,7 @@ function updateTime(tZone) {
     let formattedTime = new Intl.DateTimeFormat('en-ES', time).format(generalDate).toUpperCase();
     let formattedDate = new Intl.DateTimeFormat('en-ES', date).format(generalDate).toUpperCase();
 
-    actualTime.innerHTML = `${formattedTime}`;
+    actualTime.innerHTML = `The time in ${tZone} is ${formattedTime}`;
     actualDate.innerHTML = `${formattedDate}`;
 }
 //#endregion
@@ -256,7 +256,7 @@ getUkraine.addEventListener("click", function () {
 });
 getColombia.addEventListener("click", function () {
     //alert("colombia")
-    updateTime('Europe/Bogota');
+    updateTime('America/Bogota');
 });
 getPakistan.addEventListener("click", function () {
     updateTime('Asia/Karachi');
@@ -270,7 +270,7 @@ getJapan.addEventListener("click", function () {
     updateTime('Asia/Tokyo');
 });
 getArgentina.addEventListener("click", function () {
-    updateTime('America/Argentina/Buenos_Aires');
+    updateTime('America/Buenos_Aires');
 });
 getNewZealand.addEventListener("click", function () {
     updateTime('Pacific/Auckland');
