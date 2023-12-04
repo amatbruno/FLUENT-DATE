@@ -3,6 +3,8 @@
 const actualDate = document.getElementById("actual-date");
 const actualTime = document.getElementById("actual-time");
 const normalDate = document.getElementById("normal-date");
+const intro = document.querySelector("intro")
+const intro2 = document.querySelector("intro2")
 const otherDate = document.getElementById("other-date");
 const simplifiedDate = document.getElementById("extended-date");
 const selections = document.querySelectorAll(".selections");
@@ -65,11 +67,32 @@ var canvas, ctx;
 
 //#region HIDE INITIALS
 actualDate.innerHTML = day + "-" + month + "-" + year;
-actualTime.innerHTML = hours + ":" + minutes + ":" + seconds;
+
+// setInterval(updateClock, 1000);
 //#endregion
 
 //#region FUNCTIONS
+let isTwelveHourFormat = true;
 //MULTIPLE SELECTION FOR DIVS
+function updateClock() {
+    if (isTwelveHourFormat) {
+        //12-hour format
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        hours = hours < 10 ? '0' + hours : hours;
+
+        actualTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + ampm;
+
+    } else {
+        // 24-hour format
+        let newDate = new Date();
+        let timeRes = newDate.getHours();
+
+        actualTime.innerHTML = timeRes + ":" + minutes + ":" + seconds;
+    }
+}
+updateClock();
 function selectDateFormat(selectedOpt) {
     selections.forEach((sel) => sel.classList.remove("selected"));
     selectedOpt.classList.add("selected");
@@ -234,18 +257,12 @@ simplifiedDate.addEventListener("click", function () {
         dayWeek + ", " + day + " of " + monthLiteral + " of " + year;
 });
 twelveSelect.addEventListener("click", function () {
-    var ampm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    hours = hours < 10 ? '0' + hours : hours;
-
-    actualTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + ampm;
+    isTwelveHourFormat = true;
+    updateClock();
 });
 twentySelect.addEventListener("click", function () {
-    let newDate = new Date();
-    let timeRes = newDate.getHours();
-
-    actualTime.innerHTML = timeRes + ":" + minutes + ":" + seconds;
+    isTwelveHourFormat = false;
+    updateClock();
 });
 getSpain.addEventListener("click", function () {
     updateTime('Europe/Madrid');
@@ -280,6 +297,27 @@ getGreenland.addEventListener("click", function () {
 });
 getGhana.addEventListener("click", function () {
     updateTime('Africa/Accra');
+})
+//#endregion
+
+//#region TYPED.JS SECTION
+var typed = new Typed('.intro', {
+    strings: ["In this section, you can modify the format of the time or/and date by clicking in the corresponding buttons."],
+    typeSpeed: 45,
+    cursorChar: '|',
+    cursorCharStyle: {
+        color: 'white',
+        opacity: 2
+    }
 });
 
+var typed = new Typed('.intro2', {
+    strings: ["Discover the zone hours in diferent countries or estates compared to yours. It's crazy how in the other part of the world the time and date are totally opposite of here!."],
+    typeSpeed: 30,
+    cursorChar: '|',
+    cursorCharStyle: {
+        color: 'white',
+        opacity: 2
+    }
+});
 //#endregion
