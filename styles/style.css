@@ -6,7 +6,7 @@ header {
     color: aliceblue;
     width: 100%;
     height: 100%;
-    padding: 200px;
+    padding: 290px;
     margin-bottom: 75px;
 }
 
@@ -32,6 +32,7 @@ footer {
     font-family: 'Rubik', sans-serif;
     margin-bottom: 10px;
     letter-spacing: 3px;
+    padding: 20px;
 }
 
 .header-style p {
@@ -41,6 +42,7 @@ footer {
     margin: auto;
     font-weight: 500;
     letter-spacing: 2px;
+    padding: 20px;
 }
 
 .intro {
@@ -97,6 +99,7 @@ footer {
     font-size: 17px;
     border: none;
     color: #5f5f5f;
+    border-radius: 4px;
 }
 
 .selections:hover {
@@ -134,12 +137,12 @@ footer {
 
 .map-style {
     width: 90%;
-    height: 94%;
-    margin-top: 50px;
+    height: 85%;
     background-color: #add8e685;
     margin: auto;
     border-radius: 35px;
     border: 1px solid rgba(0, 0, 0, 0.404);
+
 }
 
 .map-style path {

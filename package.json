@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "nodemon": "^3.0.2",
+    "typed.js": "^2.1.0"
+  },
+  "name": "fluent-date",
+  "description": "THE FLUENT DATE PROJECT HAS MADE TO TREAT WITH DATE AND TIME FORMATS.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
