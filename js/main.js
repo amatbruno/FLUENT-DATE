@@ -226,12 +226,10 @@ normalDate.addEventListener("click", function () {
 otherDate.addEventListener("click", function () {
     let simpDate = new Date().toLocaleDateString('en-us', { day: "numeric", year: "numeric", month: "short" })
 
-
     actualDate.innerHTML = simpDate;
 });
 simplifiedDate.addEventListener("click", function () {
-    actualDate.innerHTML =
-        dayWeek + ", " + day + " of " + monthLiteral + " of " + year;
+    actualDate.innerHTML = dayWeek + ", " + day + " of " + monthLiteral + " of " + year;
 });
 twelveSelect.addEventListener("click", function () {
     var ampm = hours >= 12 ? 'PM' : 'AM';
@@ -281,5 +279,4 @@ getGreenland.addEventListener("click", function () {
 getGhana.addEventListener("click", function () {
     updateTime('Africa/Accra');
 });
-
 //#endregion
