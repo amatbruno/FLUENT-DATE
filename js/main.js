@@ -65,7 +65,7 @@ const dayWeek = weekday[date.getDay()]; //Get week day literal
 var canvas, ctx;
 //#endregion
 
-//#region HIDE INITIALS
+//#region INITIALS
 actualDate.innerHTML = day + "-" + month + "-" + year;
 
 // setInterval(updateClock, 1000);
